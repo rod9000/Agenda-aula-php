@@ -37,11 +37,17 @@
         </nav>
         <section>
         <br/><br/>
+        <?php
+            include("conecta.php");
+            $id = $_GET['id'];
+            $sql2 = mysqli_query($conn, "SELECT * FROM pessoa WHERE id='$id'") or die(mysqli_error($conn));
+            while($pessoa = mysqli_fetch_array($sql2)){
+        ?>
         <div style="width: 65%; padding-left:5%; padding-right:5%;">
         <div class="panel panel-primary">
-            <div class="panel-heading"><h3 class="panel-title"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>&nbsp;Cadastro de Pessoas</h3></div>
+            <div class="panel-heading"><h3 class="panel-title"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>&nbsp;Edição de Pessoas</h3></div>
                 <div class="panel-body">
-                    <form name="cadpessoa" id="cadpessoa" action="cadastrapessoa.php" method="post">
+                    <form name="cadpessoa" id="cadpessoa" action="editarpessoabd.php?id=<?php echo $id; ?>" method="post">
                         <label>Tipo</label>
                         <select name="tipopessoa" autofocus required="required" class="form-control">
                             <option value="fisica">Física</option>
@@ -49,31 +55,35 @@
                         </select>
                         <br/>
                         <label>Nome</label>
-                        <input type="text" name="nome" placeholder="Digite o nome" maxlength="85" required="required" class="form-control">
+                        <input type="text" name="nome" value="<?php echo $pessoa['nome']; ?>" maxlength="85" required="required" class="form-control">
                         <br/>
                         <label>Endereço</label>
-                        <input type="text" name="endereco" placeholder="Digite o endereço" maxlength="85" required="required" class="form-control">
+                        <input type="text" name="endereco" value="<?php echo $pessoa['endereco']; ?>" maxlength="85" required="required" class="form-control">
                         <br/>
                         <label>Cidade</label>
-                        <input type="text" name="cidade" placeholder="Digite a cidade" maxlength="80" class="form-control">
+                        <input type="text" name="cidade" value="<?php echo $pessoa['cidade']; ?>" maxlength="80" class="form-control">
                         <br/>
                         <label>Estado</label>
-                        <input type="text" name="estado" placeholder="Digite o estado" maxlength="30" class="form-control">
+                        <input type="text" name="estado" value="<?php echo $pessoa['estado']; ?>" maxlength="30" class="form-control">
                         <br/>
                         <label>Celular</label>
-                        <input type="tel" name="celular" placeholder="Digite o celular" maxlength="30" required="required" class="form-control">
+                        <input type="tel" name="celular" value="<?php echo $pessoa['celular']; ?>" maxlength="30" required="required" class="form-control">
                         <br/>
                         <label>E-mail</label>
-                        <input type="email" name="email" placeholder="Digite um e-mail válido" maxlength="90" required="required" class="form-control">
+                        <input type="email" name="email" value="<?php echo $pessoa['email']; ?>" maxlength="90" required="required" class="form-control">
                         <br/>
                         <label>Data de Nascimento</label>
-                        <input type="date" name="datanascimento" class="form-control">
+                        <input type="date" name="datanascimento"  value="<?php echo $pessoa['datanascimento']; ?>" class="form-control">
                         <br/>
                         <label>Profissão</label>
-                        <input type="text" name="profissao" placeholder="Digite a profissão da pessoa" maxlength="30" class="form-control">
+                        <input type="text" name="profissao" value="<?php echo $pessoa['profissao']; ?>" maxlength="30" class="form-control">
                         <br/>
-                        <input type="submit" value="Cadastrar" class="btn btn-primary" />
+                        <input type="submit" value="Atualizar" class="btn btn-primary" />
                     </form>
+                    <?php
+                        }
+                        mysqli_close($conn);
+                    ?>
                 </div>    
         </div>
         </div>

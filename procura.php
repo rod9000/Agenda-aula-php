@@ -69,8 +69,9 @@
         <div style="width: 85%; padding-left:5%; padding-right:5%;">
         <?php
             include("conecta.php");
-            echo "<h4>Pessoas Cadastradas</h4>";
-            $sql = mysqli_query($conn, "SELECT * FROM pessoa");
+            echo "<h4>Pessoas Pesquisadas por Nome</h4>";
+            $nome = $_POST['procura'];
+            $sql = mysqli_query($conn, "SELECT * FROM pessoa WHERE nome LIKE '%".$nome."%'");     
             echo "<table class='table table-hover'>";
             echo "<tr>";
                 echo "<th>Nome</th>";

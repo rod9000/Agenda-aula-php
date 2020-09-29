@@ -4,14 +4,14 @@
     $sql = "DELETE FROM pessoa WHERE id='$id'";
     if(mysqli_query($conn, $sql)){
         echo "<script language = 'javascript' type = 'text/javascript'>
-        alert('Usuário apagado com sucesso!');
+        alert('Pessoa apagada com sucesso!');
         window.location.href = 'pessoa.php';
         </script>";
     }
     else
     {
         echo "<script language = 'javascript' type = 'text/javascript'>
-        alert('Usuário não foi apagado com sucesso!');
+        alert('Pessoa não foi apagada com sucesso!');
         window.location.href = 'pessoa.php';
         </script>";
     }

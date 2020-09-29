@@ -1,4 +1,8 @@
 <?php
+    session_start();
+    if($_SESSION["tipo"] !="admin"){
+        header('location:agenda.php');
+    }
     include("conecta.php");
     $id = $_GET['id'];
     $sql = "DELETE FROM usuario WHERE id='$id'";
